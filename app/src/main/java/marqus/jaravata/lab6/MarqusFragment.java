@@ -36,7 +36,7 @@ public class MarqusFragment extends Fragment {
 
     private void showAlertDialog(String selectedLabel) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setIcon(R.drawable.ic_alert_icon);
+        builder.setIcon(R.drawable.bluepurplesky);
         builder.setTitle(getString(R.string.full_name));
         builder.setMessage(selectedLabel);
         builder.setPositiveButton(getString(R.string.ok_text), new DialogInterface.OnClickListener() {
@@ -51,4 +51,3 @@ public class MarqusFragment extends Fragment {
         alertDialog.show();
     }
 }
-

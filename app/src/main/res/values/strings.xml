@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MarqusLayout6</string>
     <string name="first_name">Marqus</string>
@@ -6,6 +7,12 @@
     <string name="op_1">Option 1</string>
     <string name="op_2">Option 2</string>
     <string name="op_3">Option 3</string>
+    <string name="prov">PROVINCE</string>
+    <string name="order">ORDER</string>
+    <string name="person">Person</string>
+    <string name="settings">Settings</string>
+    <string name="time">00:00:00</string>
+
 
     <string-array name="provinces_and_territories">
         <item>Alberta</item>

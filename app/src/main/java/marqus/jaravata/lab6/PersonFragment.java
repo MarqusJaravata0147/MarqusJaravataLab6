@@ -15,8 +15,7 @@ import androidx.fragment.app.Fragment;
 public class PersonFragment extends Fragment {
 
     private ListView listView;
-    private String[] provinces;
-    private int selectedIndex = -1;
+    private ArrayAdapter<String> adapter;
 
     @Nullable
     @Override
@@ -24,17 +23,18 @@ public class PersonFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_person, container, false);
 
         listView = view.findViewById(R.id.list_view);
-        provinces = getResources().getStringArray(R.array.provinces_and_territories);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_single_choice, provinces);
+
+        String[] provinces = getResources().getStringArray(R.array.provinces_and_territories);
+
+        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_activated_1, provinces);
         listView.setAdapter(adapter);
 
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedIndex = position;
-                ((MainActivity)getActivity()).setSelectedIndex(selectedIndex);
-                ((MainActivity)getActivity()).setSelectedProvince(provinces[selectedIndex]);
+                String selectedItem = provinces[position];
+                ((MainActivity) getActivity()).updateSelectedProvince(selectedItem, position);
             }
         });
 

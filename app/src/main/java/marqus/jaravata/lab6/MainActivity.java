@@ -3,10 +3,9 @@ package marqus.jaravata.lab6;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toolbar;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -14,70 +13,75 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BottomNavigationView bottomNavigationView;
-    private Toolbar toolbar;
+    private String selectedProvince;
+    private int selectedIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bottom_navigation_view);
+        setContentView(R.layout.activity_main);
 
-        // Initialize the BottomNavigationView and set the listener
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-
-        // Initialize the Toolbar and set the menu item click listener
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setOnMenuItemClickListener(menuItemClickListener);
-
-        // Set the default fragment
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new HomeFragment()).commit();
-    }
-
-    // Listener for BottomNavigationView clicks
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment selectedFragment = null;
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            Fragment selectedFragment;
 
             switch (item.getItemId()) {
-                case R.id.nav_home:
+                case R.id.navigation_home:
                     selectedFragment = new HomeFragment();
                     break;
-                case R.id.nav_marqus:
+                case R.id.navigation_marqus:
                     selectedFragment = new MarqusFragment();
                     break;
-                case R.id.nav_person:
+                case R.id.navigation_person:
                     selectedFragment = new PersonFragment();
                     break;
-                case R.id.nav_settings:
+                case R.id.navigation_settings:
                     selectedFragment = new SettingsFragment();
+                    break;
+                default:
+                    selectedFragment = new HomeFragment();
                     break;
             }
 
-            // Load the selected fragment
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    selectedFragment).commit();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, selectedFragment)
+                    .commit();
+            return true;
+        });
 
+        // Set initial fragment
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new HomeFragment())
+                .commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_settings) {
+            Intent intent = new Intent(Settings.ACTION_SETTINGS);
+            startActivity(intent);
             return true;
         }
-    };
+        return super.onOptionsItemSelected(item);
+    }
 
-    // Listener for Toolbar menu item clicks
-    private Toolbar.OnMenuItemClickListener menuItemClickListener = new Toolbar.OnMenuItemClickListener() {
-        @Override
-        public boolean onMenuItemClick(MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.action_settings:
-                    // Open the device settings screen
-                    Intent settingsIntent = new Intent(Settings.ACTION_SETTINGS);
-                    startActivity(settingsIntent);
-                    return true;
-            }
-            return false;
-        }
-    };
+    public void updateSelectedProvince(String province, int index) {
+        selectedProvince = province;
+        selectedIndex = index;
+    }
+
+    public String getSelectedProvince() {
+        return selectedProvince;
+    }
+
+    public int getSelectedIndex() {
+        return selectedIndex;
+    }
 }
 

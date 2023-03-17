@@ -27,12 +27,15 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 counter++;
-                String message = getString(R.string.first_name) + counter;
+                String message = getString(R.string.first_name) + " " + counter;
                 Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+                progressBar.setProgress(counter);
 
                 if (counter >= 5) {
                     progressBar.setVisibility(View.GONE);
-                } else if (counter >= 8) {
+                }
+
+                if (counter >= 8) {
                     getActivity().finish();
                 }
             }
@@ -41,4 +44,5 @@ public class HomeFragment extends Fragment {
         return view;
     }
 }
+
 
