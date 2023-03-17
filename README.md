@@ -5,4 +5,4 @@
 ###In the third fragment it contains a listview of stringsarray provinces&territories in which it will highlight what item is selected, thie index it is in, and passes that information to the fourth fragment.
 ###In the fourth fragment it displays the time (current and updating) and the province you selected with the index number it was. 
 
-##
+##https://github.com/MarqusJaravatan01472647/MarqusJaravataLab6
