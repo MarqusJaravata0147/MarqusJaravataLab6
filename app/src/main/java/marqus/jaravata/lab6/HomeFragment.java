@@ -30,9 +30,9 @@ public class HomeFragment extends Fragment {
                 String message = getString(R.string.first_name) + counter;
                 Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
 
-                if (counter == 5) {
+                if (counter >= 5) {
                     progressBar.setVisibility(View.GONE);
-                } else if (counter == 8) {
+                } else if (counter >= 8) {
                     getActivity().finish();
                 }
             }
