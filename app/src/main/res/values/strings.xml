@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">MarqusLayout6</string>
+    <string name="first_name">Marqus</string>
 
     <string-array name="provinces_and_territories">
         <item>Alberta</item>
@@ -16,4 +17,5 @@
         <item>Nunavut</item>
         <item>Yukon</item>
     </string-array>
+
 </resources>

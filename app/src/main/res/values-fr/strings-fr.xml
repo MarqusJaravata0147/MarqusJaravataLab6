@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MarqusLayout6</string>
+    <string name="first_name">Marqus</string>
 
     <string-array name="provinces_and_territories">
         <item>Alberta</item>
