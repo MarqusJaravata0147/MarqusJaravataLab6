@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name">MarqusLayout6</string>
     <string name="first_name">Marqus</string>
+    <string name="full_name">Marqus Jaravata</string>
+    <string name="ok_text">OK</string>
 
     <string-array name="provinces_and_territories">
         <item>Alberta</item>
